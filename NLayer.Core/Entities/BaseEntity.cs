@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace NLayer.Core.Entities
+
 {
     /// <summary>
     /// BaseEntity clası  base bit yapıda olduğu için new anahtar kelimesi ile türetilmesin istiyoruz. 
