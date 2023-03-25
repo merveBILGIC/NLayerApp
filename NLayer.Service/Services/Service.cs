@@ -1,4 +1,5 @@
-﻿using NLayer.Core.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using System;
@@ -42,7 +43,7 @@ namespace NLayer.Service.Services
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-           return await _repository.GetAll();
+           return await _repository.GetAll().ToListAsync();
         }
 
         public Task<T> GetByIdAsync(int id)
@@ -50,24 +51,27 @@ namespace NLayer.Service.Services
             throw new NotImplementedException();
         }
 
-        public Task RemoveAsync(T entity)
+        public async Task RemoveAsync(T entity)
         {
-            throw new NotImplementedException();
+            _repository.Remove(entity);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task RemoveRangeAsync(IEnumerable<T> entity)
+        public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
-            throw new NotImplementedException();
+            _repository.RemoveRange(entities);
+            await _unitOfWork.CommitAsync();
         }
 
-        public Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _repository.Update(entity);
+            await _unitOfWork.CommitAsync();
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return _repository.Where(expression);
         }
     }
 }
