@@ -52,7 +52,7 @@ namespace NLayer.Service.Services
             var hasProduct= await _repository.GetByIdAsync(id);
             if (hasProduct==null)
             {
-                throw new NotFoundException($"{typeof(T).Name} not fount");
+                throw new NotFoundException($"{typeof(T).Name} ({id}) not fount");
             }
             return hasProduct;
         }
