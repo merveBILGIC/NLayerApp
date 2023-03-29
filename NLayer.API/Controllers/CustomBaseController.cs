@@ -6,6 +6,7 @@ namespace NLayer.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class CustomBaseController : ControllerBase
     {
         //NonAction endpoint olmayan methotlara koy swagger patlatmasın diye get - post içermiyor!
