@@ -11,12 +11,21 @@ namespace NLayer.API.Controllers
     public class ProductsController : CustomBaseController
     {
         private readonly IMapper _mapper;
-        private readonly IService<Product> _service;
-        public ProductsController(IMapper mapper, IService<Product> service)
+        private readonly IProductService _service;
+        public ProductsController(IMapper mapper,  IProductService service = null)
         {
             _mapper = mapper;
             _service = service;
+             
         }
+
+        [HttpGet("[action]")]
+        public async Task <IActionResult> GetProductsWithCategory()
+        {
+            return CreateAcctionResult(await _service.GeProductsWithCategory());
+        }
+
+
 
         [HttpGet]
         public async Task<IActionResult> All()
