@@ -15,7 +15,7 @@ namespace NLayer.Repository.Repositories
         {
         }
 
-        public async Task<List<Product>> GeProductsWithCategory()
+        public async Task<List<Product>> GetProductsWithCategory()
         {
             //IGGLE looading => prodağı çekerken categoriyde çekme
             return await _context.Products.Include(x=>x.Category).ToListAsync();
